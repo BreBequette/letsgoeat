@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping
-    @ResponseBody
     public String hello(){
-        return "Hello, LetsGoEat!";
+        return "index";
     }
 
 }
