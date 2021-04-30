@@ -6,9 +6,58 @@
 
 <header th:replace="fragments :: page-header"></header>
 
+<div class="container">
+    <h1>Let's find the perfect place for you to eat.</h1>
 
-    <h1>Hello, LetsGoEat</h1>
+    <form>
+        <div class="form-group">
+            <label for="cuisine">I'm craving</label>
+            <select class="form-control" id="cuisine" name="cuisine">
+                <option value="thai">Thai</option>
+                <option value="mexican">Mexican</option>
+                <option value="steakhouse">Steakhouse</option>
+                <option value="sushi">Sushi</option>
+                <option value="italian">Italian</option>
+            </select>
+            <span class="error"></span>
+        </div>
 
+        <div class="form-group">
+            <label for="distance">within</label>
+            <select class="form-control" id="distance" name="distance">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+            </select>
+            <span class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="zip">miles of</label>
+            <input class="form-control" type="text" id="zip" name="zip"/>
+            <span class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="price">in the price range of</label>
+            <select class="form-control" id="price" name="price">
+                <option value="cheap">$</option>
+                <option value="casual">$$</option>
+                <option value="mid-range">$$$</option>
+                <option value="high">$$$$</option>
+            </select>
+            <span class="error"></span>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Give me all of my options" />
+        <input type="submit" class="btn btn-primary" value="Surprise me!" />
+
+
+    </form>
+
+</div>
 
 </body>
 </html>
