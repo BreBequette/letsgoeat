@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
+<head th:replace="fragments :: head"></head>
+
 <body>
 
-<p th:text="${response}"></p>
+<header th:replace="fragments :: page-header"></header>
+
+<div class="container body-content">
+
+    <p th:text="${results}"></p>
+
+    <table class="table table-striped centered-table">
+        <tr>
+            <th>Name</th>
+            <th>Cuisine</th>
+            <th>Price Range</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Favorite</th>
+        </tr>
+
+        <tr th:each="result : ${results}">
+            <td th:text="${result}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Add to Favorites</td>
+        </tr>
+
+    </table>
+
+</div>
 
 </body>
 </html>
