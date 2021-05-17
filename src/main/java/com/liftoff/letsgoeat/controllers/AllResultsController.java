@@ -1,5 +1,7 @@
 package com.liftoff.letsgoeat.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -9,6 +11,7 @@ import com.mashape.unirest.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -44,35 +47,23 @@ public class AllResultsController {
                 .header("Authorization", "Bearer " + apiKey)
                 .header("API", "apiKey").asJson();
 
-        //Convert JSON response into an arraylist of Objects
         JSONObject responseBodyJSONObj = response.getBody().getObject();
-        JSONArray resultsJSONArr = responseBodyJSONObj.getJSONArray("businesses");
-        ArrayList<Object> resultsArr = new ArrayList<>();
+        JSONArray businesses = (JSONArray) responseBodyJSONObj.get("businesses");
 
-        if (resultsJSONArr != null) {
-            for (int i=0; i<resultsJSONArr.length(); i++) {
-                resultsArr.add(resultsJSONArr.get(i));
-            }
-        }
+        //Store in a map - don't know if I need this
+        String jsonString = responseBodyJSONObj.toString(1);
+        Map<String, Object> mapObj = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, Object>>() {}.getType());
 
-        //try to store json in map instead
-
-
-
-        //pull out specific results needed
-        String name="bre";
-        String cuisine;
-        String priceRange;
-        String address;
-        String phone;
+        //get number of matches
+        int numMatches = businesses.length();
 
 
         //add results to page
         model.addAttribute("title", "All Results");
-        model.addAttribute("results", resultsArr);
+        model.addAttribute("results", businesses);
+        model.addAttribute("totalMatches", numMatches);
+        //model.addAttribute("name", name);
 
-        //trying to access specific pieces of info
-        model.addAttribute("name", name);
         return "all-results";
     }
 }
