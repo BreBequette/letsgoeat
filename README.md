@@ -8,9 +8,9 @@ If a user knows of a restaurant that isn't in the database (the full database wi
 ## Features
 - User login: users will be able to create and view a profile, where their favorite restaurants will be saved. Logging out will proteect their data.
 - Input form: on the front end, users will fill out a form of their restaurant criteria. The back end of the form will take their input and display only restaurants that match all criteria.
-- Database front end: users will be able to view and sort restaurants in tables – both for their results and for all restaurants in the database. They'll also be able to view individual pages for each restaurant, which will include all of the information front the database for that particular restaurant.
+- Database front end: users will be able to view and sort restaurants in tables. They'll also be able to view individual pages for each restaurant, which will include all of the information front the database for that particular restaurant.
 - Favorites: users will be able to mark restaurants as favorites, then view that list on their profile.
-- CRUD Database: users will be able to add restaurants to the database if they know of one that isn't currently on the list.
+
 
 ## Biggest Challenge
 For this project, I'll have to learn how to work with existing data from an API and combine it with user-entered data, ultimately storing all of it in one database. I'll also have to learn how to leverage a user's location to output relevant results.
