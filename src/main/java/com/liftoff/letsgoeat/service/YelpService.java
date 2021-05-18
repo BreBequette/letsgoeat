@@ -11,6 +11,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +25,14 @@ public class YelpService {
 
 
     private String cuisine;
+
+    @NotBlank(message="This field is required")
+    @NotNull(message="This field is required")
+    @Size(min=5,max=5,message="Zip code must be 5 digits")
     private String zip;
+
     private String distance;
+
     private String price;
 
     public JSONArray getMatchingBusinesses(String cuisine, String zip, String distance, String price) throws UnirestException {

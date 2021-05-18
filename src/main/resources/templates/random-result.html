@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<header th:replace="fragments :: page-header"></header>
+
+<div class="container body-content">
+
+<h2 th:text="${'How about you eat at ' + result.get('name') + '?'}"></h2>
+
+    <h3>Categories:</h3>
+    <p th:text="${result.get('categories')}"></p>
+
+    <h3>Price:</h3>
+    <p th:text="${result.get('price')}"></p>
+
+    <h3>Location:</h3>
+    <p th:text="${result.get('location')}"></p>
+
+    <h3>Phone:</h3>
+    <p th:text="${result.get('display_phone')}"></p>
+
+    <p>Add to my favorites</p>
+
+
+</div>
+
+</body>
+</html>

@@ -8,11 +8,19 @@
 
 <div class="container body-content">
 
-    <p th:text="${name}"></p>
 
-    <h2 th:text="${'Your search returned ' + totalMatches + ' total matches'}"></h2>
+    <h2 th:switch="${totalMatches}">
+        <span th:case="0" th:text="${'Your search returned zero matches.'}"></span>
+        <span th:case="1" th:text="${'Your search returned ' + totalMatches + ' match'}" ></span>
+        <span th:case="*" th:text="${'Your search returned ' + totalMatches + ' total matches'}"></span>
+    </h2>
 
-    <table class="table table-striped centered-table">
+    <p th:if = "${totalMatches < 1}">
+    <a th:href="@{/}">Try Again</a>
+    </p>
+
+
+    <table class="table table-striped centered-table" th:if = "${totalMatches > 0}">
         <tr>
             <th>Name</th>
             <th>Cuisine</th>

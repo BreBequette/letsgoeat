@@ -45,13 +45,10 @@ public class AllResultsController {
 //                .header("Authorization", "Bearer " + apiKey)
 //                .header("API", "apiKey").asJson();
 
-        yelpService.getMatchingBusinesses(cuisine,zip,distance,price).length();
-
         //add results to page
         model.addAttribute("title", "All Results");
         model.addAttribute("results", yelpService.getMatchingBusinesses(cuisine,zip,distance,price));
         model.addAttribute("totalMatches", yelpService.getMatchingBusinesses(cuisine,zip,distance,price).length());
-        //model.addAttribute("cuisine", cuisine);
 
 
         return "all-results";

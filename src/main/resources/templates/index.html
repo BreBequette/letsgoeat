@@ -79,8 +79,8 @@
             <span class="error"></span>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Give me all of my options" />
-        <input type="submit" class="btn btn-primary" value="Surprise me!" />
+        <input type="submit" class="btn btn-primary" name="all" value="Give me all of my options" />
+        <input type="submit" class="btn btn-primary" th:formaction="@{/random-result}" name="random" value="Surprise me!" />
 
 
     </form>
