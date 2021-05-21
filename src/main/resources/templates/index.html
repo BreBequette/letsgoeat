@@ -6,9 +6,90 @@
 
 <header th:replace="fragments :: page-header"></header>
 
+<div class="container">
+    <h1>Let's find the perfect place for you to eat.</h1>
 
-    <h1>Hello, LetsGoEat</h1>
+    <form method="get" th:action="@{/all-results}" modelAttribute="search">
+        <div class="form-group">
+            <label>I'm craving
+            <select class="form-control" th:field="${search.cuisine}">
+                <option value="tradamerican">American (Traditional)</option>
+                <option value="bbq">BBQ</option>
+                <option value="brazilian">Brazilian</option>
+                <option value="breakfast_brunch">Breakfast & Brunch</option>
+                <option value="burgers">Burgers</option>
+                <option value="cafes">Cafe</option>
+                <option value="cajun">Cajun/Creole</option>
+                <option value="caribbean">Caribbean</option>
+                <option value="chicken_wings">Hot Wings</option>
+                <option value="chinese">Chinese</option>
+                <option value="comfortfood">Comfort Food</option>
+                <option value="delis">Delis</option>
+                <option value="diners">Diners</option>
+                <option value="hotdogs">Fast Food</option>
+                <option value="gastropubs">Gastropubs</option>
+                <option value="greek">Greek</option>
+                <option value="indpak">Indian</option>
+                <option value="italian">Italian</option>
+                <option value="japanese">Japanese</option>
+                <option value="korean">Korean</option>
+                <option value="mediterranean">Mediterranean</option>
+                <option value="mexican">Mexican</option>
+                <option value="pizza">Pizza</option>
+                <option value="seafood">Seafood</option>
+                <option value="soulfood">Soul Food</option>
+                <option value="southern">Southern</option>
+                <option value="steak">steak</option>
+                <option value="sushi">Sushi</option>
+                <option value="tapas">Tapas</option>
+                <option value="tex-mex">Tex-Mex</option>
+                <option value="thai">Thai</option>
+                <option value="vegan">Vegan</option>
+                <option value="vietnamese">Vietnamese</option>
+            </select>
+            </label>
+            <p class="error" th:errors="${search.cuisine}"></p>
+        </div>
 
+        <div class="form-group">
+            <label>within
+            <select class="form-control" th:field="${search.distance}">
+                <option value="8046">5</option>
+                <option value="16093.4">10</option>
+                <option value="24140">15</option>
+                <option value="32186">20</option>
+                <option value="40233">25</option>
+            </select>
+            </label>
+            <p class="error" th:errors="${search.distance}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>miles of
+            <input class="form-control" type="text" th:field="${search.zip}"/>
+            </label>
+            <p class="error" th:errors="${search.zip}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>in the price range of
+            <select class="form-control" th:field="${search.price}">
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+                <option value="4">$$$$</option>
+            </select>
+            </label>
+            <p class="error" th:errors="${search.price}"></p>
+        </div>
+
+        <input type="submit" class="btn btn-primary" name="all" value="Give me all of my options" />
+        <input type="submit" class="btn btn-primary" th:formaction="@{/random-result}" name="random" value="Surprise me!" />
+
+
+    </form>
+
+</div>
 
 </body>
 </html>
