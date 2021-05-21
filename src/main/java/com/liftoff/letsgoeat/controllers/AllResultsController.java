@@ -2,6 +2,7 @@ package com.liftoff.letsgoeat.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.liftoff.letsgoeat.models.YelpSearch;
 import com.liftoff.letsgoeat.service.YelpService;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.mashape.unirest.http.JsonNode;
 
+import javax.validation.Valid;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -37,19 +39,19 @@ public class AllResultsController {
     private YelpService yelpService;
 
     @GetMapping
-    public String showAllResults( Model model, String cuisine, String distance, String zip, String price) throws UnirestException {
+    public String showAllResults( Model model, @ModelAttribute @Valid YelpSearch search, Errors errors) throws UnirestException {
 
 
-        //with params hardcoded in
-//        HttpResponse<JsonNode> response = Unirest.get("https://api.yelp.com/v3/businesses/search?location=63139&radius=8046&categories=sushi&price=2")
-//                .header("Authorization", "Bearer " + apiKey)
-//                .header("API", "apiKey").asJson();
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Home");
+            model.addAttribute("errorMsg", "Bad data!");
+            return "index";
+        }
 
         //add results to page
         model.addAttribute("title", "All Results");
-        model.addAttribute("results", yelpService.getMatchingBusinesses(cuisine,zip,distance,price));
-        model.addAttribute("totalMatches", yelpService.getMatchingBusinesses(cuisine,zip,distance,price).length());
-
+        model.addAttribute("results", yelpService.getMatchingBusinesses(search));
+        model.addAttribute("totalMatches", yelpService.getMatchingBusinesses(search).length());
 
         return "all-results";
     }

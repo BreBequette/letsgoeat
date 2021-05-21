@@ -2,6 +2,7 @@ package com.liftoff.letsgoeat.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.liftoff.letsgoeat.models.YelpSearch;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -24,26 +25,16 @@ public class YelpService {
     private String apiKey;
 
 
-    private String cuisine;
 
-    @NotBlank(message="This field is required")
-    @NotNull(message="This field is required")
-    @Size(min=5,max=5,message="Zip code must be 5 digits")
-    private String zip;
-
-    private String distance;
-
-    private String price;
-
-    public JSONArray getMatchingBusinesses(String cuisine, String zip, String distance, String price) throws UnirestException {
+    public JSONArray getMatchingBusinesses(YelpSearch search) throws UnirestException {
         Unirest.setTimeouts(0, 0);
         HttpResponse<JsonNode> response = Unirest.get("https://api.yelp.com/v3/businesses/search")
                 .header("Authorization", "Bearer " + apiKey)
                 .header("API", "apiKey")
-                .queryString("location", zip)
-                .queryString("radius", distance)
-                .queryString("categories", cuisine)
-                .queryString("price", price)
+                .queryString("location", search.getZip())
+                .queryString("radius", search.getDistance())
+                .queryString("categories", search.getCuisine())
+                .queryString("price", search.getPrice())
                 .asJson();
 
         JSONObject responseBodyJSONObj = response.getBody().getObject();

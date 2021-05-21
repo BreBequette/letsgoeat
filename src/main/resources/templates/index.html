@@ -9,10 +9,10 @@
 <div class="container">
     <h1>Let's find the perfect place for you to eat.</h1>
 
-    <form method="get" th:action="@{/all-results}">
+    <form method="get" th:action="@{/all-results}" modelAttribute="search">
         <div class="form-group">
-            <label for="cuisine">I'm craving</label>
-            <select class="form-control" id="cuisine" name="cuisine">
+            <label>I'm craving
+            <select class="form-control" th:field="${search.cuisine}">
                 <option value="tradamerican">American (Traditional)</option>
                 <option value="bbq">BBQ</option>
                 <option value="brazilian">Brazilian</option>
@@ -47,36 +47,40 @@
                 <option value="vegan">Vegan</option>
                 <option value="vietnamese">Vietnamese</option>
             </select>
-            <span class="error"></span>
+            </label>
+            <p class="error" th:errors="${search.cuisine}"></p>
         </div>
 
         <div class="form-group">
-            <label for="distance">within</label>
-            <select class="form-control" id="distance" name="distance">
+            <label>within
+            <select class="form-control" th:field="${search.distance}">
                 <option value="8046">5</option>
                 <option value="16093.4">10</option>
                 <option value="24140">15</option>
                 <option value="32186">20</option>
                 <option value="40233">25</option>
             </select>
-            <span class="error"></span>
+            </label>
+            <p class="error" th:errors="${search.distance}"></p>
         </div>
 
         <div class="form-group">
-            <label for="zip">miles of</label>
-            <input class="form-control" type="text" id="zip" name="zip"/>
-            <span class="error"></span>
+            <label>miles of
+            <input class="form-control" type="text" th:field="${search.zip}"/>
+            </label>
+            <p class="error" th:errors="${search.zip}"></p>
         </div>
 
         <div class="form-group">
-            <label for="price">in the price range of</label>
-            <select class="form-control" id="price" name="price">
+            <label>in the price range of
+            <select class="form-control" th:field="${search.price}">
                 <option value="1">$</option>
                 <option value="2">$$</option>
                 <option value="3">$$$</option>
                 <option value="4">$$$$</option>
             </select>
-            <span class="error"></span>
+            </label>
+            <p class="error" th:errors="${search.price}"></p>
         </div>
 
         <input type="submit" class="btn btn-primary" name="all" value="Give me all of my options" />

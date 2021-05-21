@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<header th:replace="fragments :: page-header"></header>
+
+<div class="container body-content">
+
+
+    <h2>My Favorites</h2>
+    <ul th:each="favorite : ${favorites}">
+        <li th:text="${favorite.getName}"></li>
+    </ul>
+
+
+</div>
+
+</body>
+</html>
