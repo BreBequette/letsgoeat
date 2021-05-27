@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -37,12 +39,18 @@ public class YelpService {
                 .queryString("price", search.getPrice())
                 .asJson();
 
+        //get json array
         JSONObject responseBodyJSONObj = response.getBody().getObject();
         JSONArray businesses = (JSONArray) responseBodyJSONObj.get("businesses");
+        //JSONArray businesses = responseBodyJSONObj.getJSONArray("businesses");
 
-        //Store in a map - don't know if I need this
-        //String jsonString = responseBodyJSONObj.toString(1);
-        //Map<String, Object> mapObj = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, Object>>() {}.getType());
+
+        //convert json array into regular list of objects
+        List<Object> businessesArr = new ArrayList<>();
+        for (int i=0; i<businesses.length(); i++){
+            businessesArr.add(businesses.get(i));
+        }
+
 
         return businesses;
     }

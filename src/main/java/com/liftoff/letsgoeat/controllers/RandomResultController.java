@@ -1,6 +1,7 @@
 package com.liftoff.letsgoeat.controllers;
 
 import com.liftoff.letsgoeat.models.YelpSearch;
+import com.liftoff.letsgoeat.models.data.FavoriteRepository;
 import com.liftoff.letsgoeat.service.YelpService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("random-result")
@@ -31,7 +34,9 @@ public class RandomResultController {
         }
 
         //get all matching results
+        //List<Object> allResults = yelpService.getMatchingBusinesses(search);
         JSONArray allResults = yelpService.getMatchingBusinesses(search);
+
 
         //random number generator from 0 to allResults.length
         int randomNum = (int)(Math.random()*allResults.length());
