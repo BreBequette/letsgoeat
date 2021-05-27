@@ -3,6 +3,7 @@ package com.liftoff.letsgoeat.controllers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.liftoff.letsgoeat.models.YelpSearch;
+import com.liftoff.letsgoeat.models.data.FavoriteRepository;
 import com.liftoff.letsgoeat.service.YelpService;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;

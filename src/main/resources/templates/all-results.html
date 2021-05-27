@@ -30,11 +30,16 @@
             <th>Favorite</th>
         </tr>
 
-        <tr th:each="result : ${results}">
+        <tr th:each="result, resultStat : ${results}">
             <td th:text="${result.get('name')}"></td>
-            <td th:text="${result.get('categories')}"></td>
+<!--            this needs work-->
+            <td>
+                <p th:each="category : ${result.getJSONArray('categories')}"></p>
+                <span th:text="${category.get('title')}"></span>
+            </td>
+<!--            <td th:text="${result.getJSONArray('categories').get(0).get('title')}"></td>-->
             <td th:text="${result.get('price')}"></td>
-            <td th:text="${result.get('location')}"></td>
+            <td th:text="${result.get('location').getJSONArray('display_address').getString(0) + ', ' + result.get('location').getJSONArray('display_address').getString(1)}"></td>
             <td th:text="${result.get('display_phone')}"></td>
             <td>Add to Favorites</td>
         </tr>

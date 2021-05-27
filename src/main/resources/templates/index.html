@@ -9,7 +9,7 @@
 <div class="container">
     <h1>Let's find the perfect place for you to eat.</h1>
 
-    <form method="get" th:action="@{/all-results}" modelAttribute="search">
+    <form method="get" th:action="@{/all-results}">
         <div class="form-group">
             <label>I'm craving
             <select class="form-control" th:field="${search.cuisine}">

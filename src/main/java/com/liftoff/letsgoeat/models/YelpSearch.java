@@ -22,15 +22,16 @@ public class YelpSearch extends AbstractEntity{
     @NotNull
     private String price;
 
-    public YelpSearch(){}
 
     public YelpSearch (String cuisine, String zip, String distance, String price){
-        this();
         this.cuisine = cuisine;
         this.zip = zip;
         this.distance = distance;
         this.price = price;
     }
+
+    public YelpSearch(){}
+
 
 
     public String getCuisine() {
