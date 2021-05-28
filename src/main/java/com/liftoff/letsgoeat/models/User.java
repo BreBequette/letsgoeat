@@ -19,7 +19,7 @@ public class User extends AbstractEntity{
     private String username;
 
     @NotNull
-    @Size(min = 31, max = 50, message = "Password must be between 3 and 50 characters")
+    @Size(min = 5, max = 50, message = "Password must be between 3 and 50 characters")
     private String pwHash;
 
     @OneToMany
@@ -41,13 +41,13 @@ public class User extends AbstractEntity{
         return username;
     }
 
-    public List<Favorite> getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(List<Favorite> favorites) {
-        this.favorites = favorites;
-    }
+//    public List<Favorite> getFavorites() {
+//        return favorites;
+//    }
+//
+//    public void setFavorites(List<Favorite> favorites) {
+//        this.favorites = favorites;
+//    }
 
     public boolean isMatchingPassword(String password){
         return encoder.matches(password, pwHash);

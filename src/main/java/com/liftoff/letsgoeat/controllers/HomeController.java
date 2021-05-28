@@ -14,13 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-
-//    @GetMapping()
-//    public String displayForm(Model model){
-//        model.addAttribute("title", "Home");
-//        //model.addAttribute("search", new YelpSearch());
-//        return "index";
-//    }
 @GetMapping()
 public ModelAndView displayForm(Model model){
     return new ModelAndView("index", "search", new YelpSearch());
