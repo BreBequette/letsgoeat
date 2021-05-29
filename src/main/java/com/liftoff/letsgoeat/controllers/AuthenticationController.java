@@ -25,35 +25,36 @@ public class AuthenticationController {
 
     private static final String userSessionKey = "user";
 
-    public User getUserFromSession(HttpSession session){
+    public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
-        if (userId == null){
+        if (userId == null) {
             return null;
         }
 
         Optional<User> user = userRepository.findById(userId);
 
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             return null;
         }
 
         return user.get();
-
     }
 
-    private static void setUserInSession(HttpSession session, User user){
+    private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
 
     @GetMapping("/register")
-    public String displayRegistrationForm(Model model){
+    public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model){
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+                                          Errors errors, HttpServletRequest request,
+                                          Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");
@@ -126,4 +127,5 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return "redirect:/login";
     }
+
 }

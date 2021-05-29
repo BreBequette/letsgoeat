@@ -17,7 +17,7 @@ public class FavoritesController {
 
     @GetMapping
     public String showFavorites(Model model){
-        model.addAttribute("title", "Favorites");
+        model.addAttribute("title", "My Favorites");
         //model.addAttribute("favorites", FavoriteData.getAll());
         model.addAttribute("favorites", favoriteRepository.findAll());
 

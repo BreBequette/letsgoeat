@@ -8,6 +8,8 @@
 
 <div class="container body-content">
 
+    <h1 th:replace="fragments :: page-title"></h1>
+
 
     <h2 th:switch="${totalMatches}">
         <span th:case="0" th:text="${'Your search returned zero matches.'}"></span>
@@ -33,11 +35,11 @@
         <tr th:each="result, resultStat : ${results}">
             <td th:text="${result.get('name')}"></td>
 <!--            this needs work-->
-            <td>
-                <p th:each="category : ${result.getJSONArray('categories')}"></p>
-                <span th:text="${category.get('title')}"></span>
-            </td>
-<!--            <td th:text="${result.getJSONArray('categories').get(0).get('title')}"></td>-->
+<!--            <td>-->
+<!--                <p th:each="category, categoryStat : ${result.get('categories')}"></p>-->
+<!--                <span th:text="${category.getJSONObject(0).get('title')}"></span>-->
+<!--            </td>-->
+            <td th:text="${result.getJSONArray('categories')}"></td>
             <td th:text="${result.get('price')}"></td>
             <td th:text="${result.get('location').getJSONArray('display_address').getString(0) + ', ' + result.get('location').getJSONArray('display_address').getString(1)}"></td>
             <td th:text="${result.get('display_phone')}"></td>

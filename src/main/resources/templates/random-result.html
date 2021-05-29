@@ -8,7 +8,10 @@
 
 <div class="container body-content">
 
-<h2 th:text="${'How about you eat at ' + result.get('name') + '?'}"></h2>
+    <h1 th:replace="fragments :: page-title"></h1>
+
+
+    <h2 th:text="${'How about you eat at ' + result.get('name') + '?'}"></h2>
 
     <h3>Cuisine:</h3>
     <p th:text="${result.get('categories')}"></p>
@@ -17,7 +20,7 @@
     <p th:text="${result.get('price')}"></p>
 
     <h3>Location:</h3>
-    <p th:text="${result.get('location')}"></p>
+    <p th:text="${result.get('location').getJSONArray('display_address').getString(0) + ', ' + result.get('location').getJSONArray('display_address').getString(1)}"></p>
 
     <h3>Phone:</h3>
     <p th:text="${result.get('display_phone')}"></p>

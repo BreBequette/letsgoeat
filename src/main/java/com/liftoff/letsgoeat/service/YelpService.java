@@ -26,8 +26,6 @@ public class YelpService {
     @Value("${api.key}")
     private String apiKey;
 
-
-
     public JSONArray getMatchingBusinesses(YelpSearch search) throws UnirestException {
         Unirest.setTimeouts(0, 0);
         HttpResponse<JsonNode> response = Unirest.get("https://api.yelp.com/v3/businesses/search")
@@ -37,6 +35,7 @@ public class YelpService {
                 .queryString("radius", search.getDistance())
                 .queryString("categories", search.getCuisine())
                 .queryString("price", search.getPrice())
+                .queryString("limit", 50)
                 .asJson();
 
         //get json array
