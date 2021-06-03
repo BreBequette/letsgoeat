@@ -10,6 +10,8 @@
 
     <h1 th:replace="fragments :: page-title"></h1>
 
+    <h2 th:text="${userId}"></h2>
+
 
     <ul th:each="favorite : ${favorites}">
         <li th:text="${favorite.getName}"></li>
