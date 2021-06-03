@@ -14,7 +14,7 @@ public class Favorite extends AbstractEntity {
     private String name;
 
     @ManyToMany(mappedBy="favorites")
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Favorite(){}
 
@@ -30,7 +30,4 @@ public class Favorite extends AbstractEntity {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }
