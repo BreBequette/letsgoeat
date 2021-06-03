@@ -43,7 +43,12 @@
             <td th:text="${result.get('price')}"></td>
             <td th:text="${result.get('location').getJSONArray('display_address').getString(0) + ', ' + result.get('location').getJSONArray('display_address').getString(1)}"></td>
             <td th:text="${result.get('display_phone')}"></td>
-            <td>Add to Favorites</td>
+            <td>
+                <form method="post" th:action="@{/my-favorites}">
+<!--                    <input type="hidden" th:field="${result.get('name')}">-->
+                    <input th:id="${result.get('name')}" type="submit" class="btn btn-primary" name="addFavorite" value="Add to Favorites" />
+                </form>
+            </td>
         </tr>
 
     </table>

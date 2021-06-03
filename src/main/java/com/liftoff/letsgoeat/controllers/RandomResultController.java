@@ -43,6 +43,7 @@ public class RandomResultController {
 
         model.addAttribute("title", "Random Result");
         model.addAttribute("result", allResults.get(randomNum));
+        model.addAttribute("totalMatches", yelpService.getMatchingBusinesses(search).length());
 
     return "random-result";
     }

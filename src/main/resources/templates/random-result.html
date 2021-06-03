@@ -10,6 +10,10 @@
 
     <h1 th:replace="fragments :: page-title"></h1>
 
+    <p th:if = "${totalMatches < 1}">
+        <a th:href="@{/}">Try Again</a>
+    </p>
+
 
     <h2 th:text="${'How about you eat at ' + result.get('name') + '?'}"></h2>
 
@@ -25,7 +29,10 @@
     <h3>Phone:</h3>
     <p th:text="${result.get('display_phone')}"></p>
 
-    <p>Add to my favorites</p>
+    <form action="/my-favorites" method="post">
+        <!--                    <input type="hidden" th:field="${result.get('name')}">-->
+        <input th:id="${result.get('name')}" type="submit" class="btn btn-primary" name="addFavorite" value="Add to Favorites" />
+    </form>
 
 
 </div>

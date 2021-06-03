@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.liftoff.letsgoeat.models.YelpSearch;
 import com.liftoff.letsgoeat.models.data.FavoriteRepository;
+import com.liftoff.letsgoeat.models.data.UserRepository;
+import com.liftoff.letsgoeat.models.dto.UserFavoriteDTO;
 import com.liftoff.letsgoeat.service.YelpService;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
@@ -17,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,6 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.mashape.unirest.http.JsonNode;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.awt.*;
 import java.io.*;
@@ -33,13 +38,19 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("all-results")
+//@RequestMapping("all-results")
 public class AllResultsController {
 
     @Autowired
     private YelpService yelpService;
 
-    @GetMapping
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("all-results")
     public String showAllResults( Model model, @ModelAttribute @Valid YelpSearch search, Errors errors) throws UnirestException {
 
 
@@ -56,4 +67,14 @@ public class AllResultsController {
 
         return "all-results";
     }
+
+    //postmapping that processes add to favorites button
+    //need to use user session and restaurant ID
+    @RequestMapping(value="all-results", method={RequestMethod.POST})
+    @ResponseBody
+    public String addToFavorites(@ModelAttribute @Valid UserFavoriteDTO userFavorite, HttpSession session,
+                                 HttpServletRequest request, Model model, @RequestBody String restaurantName){
+        return "my-favorites";
+    }
+
 }
