@@ -31,7 +31,6 @@ public class FavoritesController {
     //@GetMapping("/{user}")
     @GetMapping
     public String showFavorites(Model model, HttpSession session, HttpServletRequest request){
-        model.addAttribute("title", "My Favorites");
 
         Integer userId = (Integer) session.getAttribute("user");
         Optional<User> result = userRepository.findById(userId);
@@ -39,7 +38,7 @@ public class FavoritesController {
 
         //model.addAttribute("favorites", FavoriteData.getAll());
         model.addAttribute("favorites", favoriteRepository.findAll());
-        model.addAttribute("userId", user.getUsername());
+        model.addAttribute("title", user.getUsername() + "'s Favorite Restaurants");
 
         return "my-favorites";
     }

@@ -2,6 +2,7 @@ package com.liftoff.letsgoeat.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.liftoff.letsgoeat.models.Favorite;
 import com.liftoff.letsgoeat.models.YelpSearch;
 import com.liftoff.letsgoeat.models.data.FavoriteRepository;
 import com.liftoff.letsgoeat.models.data.UserRepository;
@@ -71,10 +72,19 @@ public class AllResultsController {
     //postmapping that processes add to favorites button
     //need to use user session and restaurant ID
     @RequestMapping(value="all-results", method={RequestMethod.POST})
-    @ResponseBody
     public String addToFavorites(@ModelAttribute @Valid UserFavoriteDTO userFavorite, HttpSession session,
-                                 HttpServletRequest request, Model model, @RequestBody String restaurantName){
+                                 HttpServletRequest request, Favorite favorite, Model model, @RequestBody String restaurantId){
+
+        //get the id of the selected favorite
+        //add it to the user_favorites DB
+        favoriteRepository.save(favorite);
         return "my-favorites";
+    }
+
+    @GetMapping("view-details/{id}")
+    public String displayRestaurantDetails(@PathVariable String id, Model model, @ModelAttribute @Valid Errors errors) throws UnirestException{
+
+        return "view-details";
     }
 
 }
