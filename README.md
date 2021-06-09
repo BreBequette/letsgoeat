@@ -21,3 +21,6 @@ For this project, I'll have to learn how to work with existing data from an API 
 - Thymeleaf templates
 - APIs/JSON
 - Bootstrap
+
+## View
+[Click here to view LetsGoEat on AWS](http://letsgoeat-env.eba-dvfjnzns.us-east-2.elasticbeanstalk.com/)
